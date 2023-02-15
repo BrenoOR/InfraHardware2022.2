@@ -1,1 +1,2 @@
-# InfraHardware2022.2
+# InfraHardware 2022.2 - Projeto
+## Grupo 2
