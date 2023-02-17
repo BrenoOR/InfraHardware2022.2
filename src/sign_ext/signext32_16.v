@@ -1,8 +1,8 @@
 module signext32_16 (
     input wire [15:0] data_input,
-    output wire [31:0] data_out
+    output wire [31:0] data_output
 );
 
-    assign data_out = {{16{data_input[15]}}, data_input};
+    assign data_output = {{16{data_input[15]}}, data_input};
 
 endmodule
