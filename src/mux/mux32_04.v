@@ -5,7 +5,7 @@ module mux32_04 (
     input wire [31:0] data_2;
     input wire [31:0] data_3;
     input wire [31:0] data_4;
-    input wire [31:0] data_Out;
+    output wire [31:0] data_Out;
 );
 
     wire [31:0] aux_0;

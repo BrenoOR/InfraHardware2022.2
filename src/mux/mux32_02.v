@@ -3,7 +3,7 @@ module mux32_02 (
     input wire [31:0] data_0;
     input wire [31:0] data_1;
     input wire [31:0] data_2;
-    input wire [31:0] data_Out;
+    output wire [31:0] data_Out;
 );
 
     wire [31:0] aux;
