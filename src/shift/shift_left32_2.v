@@ -3,6 +3,9 @@ module shift_left32_2(
     output [31:0] data_output
 );
 
-    assign data_output = {data_input[29:0], 2{1'b0}}
+    wire [29:0] input_used;
+
+    assign input_used = data_input[29:0];
+    assign data_output = {input_used, 2'b00};
 
 endmodule

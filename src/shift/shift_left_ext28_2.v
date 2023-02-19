@@ -3,6 +3,6 @@ module shift_left_ext28_2(
     output [28:0] data_output
 );
 
-    assign data_output = {data_input, 2{1'b0}}
+    assign data_output = {data_input, 2'b00};
 
 endmodule

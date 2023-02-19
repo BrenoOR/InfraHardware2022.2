@@ -6,10 +6,10 @@ module mux32_ALUB (
     output wire [31:0] data_Out
 );
 
-//   input 0: data_0 = B
-//   input 1:  4
-//   input 2: data_1 = instr[15:0] ext
-//   input 3: data_2 = instr[15:0] ext sft
+//   input 0 (00): data_0 = B
+//   input 1 (01):  4
+//   input 2 (10): data_1 = instr[15:0] ext
+//   input 3 (11): data_2 = instr[15:0] ext sft
 
     wire [31:0] aux_0;
     wire [31:0] aux_1;
