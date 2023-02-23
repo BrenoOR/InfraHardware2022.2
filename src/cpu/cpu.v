@@ -15,13 +15,20 @@ module cpu(
     // Sinais da Unidade de Controle
 
     wire PC_Write;
+    wire PC_Write_Cond;
     wire MEM_ReadWrite;
     wire IR_Write;
+    wire Xchg_Write;
+    wire Xchg_Src;
     wire Reg_Write;
     wire AB_Write;
     wire ALUOut_Write;
     wire Use_Overflow;
+    wire Opcode_Error;
+    wire EPC_Read;
+    wire Shift_Control;
     wire ALUSrc_A;
+    wire Use_Shamt;
 
     wire [1:0] Reg_Dst;
     wire [1:0] Word_Length;
@@ -68,6 +75,13 @@ module cpu(
     wire [31:0] ALU_B;
     wire [31:0] ALUResult_Out;
     wire [31:0] ALU_Out;
+    wire [31:0] LSC_Out;
+    wire [31:0] LO_Out;
+    wire [31:0] HI_Out;
+    wire [31:0] RegShift_Out;
+    wire [31:0] XchgAux_Out;
+    wire [31:0] SL16_Out;
+    wire [31:0] ExceptAddr_Out;
 
     //    PC_Write: Sinal da Unidade de Controle
     //    PC_in: Entrada do PC; Saída do mux controlado por PCSource
@@ -122,10 +136,11 @@ module cpu(
     // Reg_Dst: Sinal da Unidade de Controle
     // WriteReg_In: Entrada do Write register
 
-    mux32_02 mux_WriteReg(
+    mux5_02 mux_WriteReg(
         Reg_Dst,
         INSTR_20_16,
-        INSTR_15_0,
+        INSTR_15_0[15:11],
+        INSTR_25_21,
         WriteReg_In
     );
 
@@ -164,7 +179,7 @@ module cpu(
         clock,
         reset,
         AB_Write,
-        RegA_in,
+        RegA_In,
         RegA_Out
     );
         
@@ -176,7 +191,7 @@ module cpu(
         clock,
         reset,
         AB_Write,
-        RegB_in,
+        RegB_In,
         RegB_Out
     );
 
@@ -241,9 +256,7 @@ module cpu(
         ALU_Out
     );
 
-    Overflow_Reg IgnoreOverflow(
-        clock,
-        reset,
+    overflow_Reg IgnoreOverflow(
         Use_Overflow,
         overflow,
         IgnoreOverflow_Out
@@ -262,6 +275,43 @@ module cpu(
         EPC_Out,
         PCExcept_Address,
         PC_In
+    );
+
+    // Control Unit
+
+    control_Unit control_Unit(
+        clock,
+        reset,
+        overflow,
+        neg,
+        zero,
+        eq,
+        gt,
+        lt,
+        INSTR_31_26,
+        PC_Write,
+        PC_Write_Cond,
+        MEM_ReadWrite,
+        IR_Write,
+        Xchg_Write,
+        Xchg_Src,
+        Reg_Write,
+        AB_Write,
+        ALUOut_Write,
+        Use_Overflow,
+        Opcode_Error,
+        EPC_Read,
+        Shift_Control,
+        Word_Length,
+        ALUOp,
+        ALUSrc_A,
+        Use_Shamt,
+        IorD,
+        Reg_Dst,
+        ALUSrc_B,
+        Mem_To_Reg,
+        PC_Src,
+        reset
     );
 
 endmodule
