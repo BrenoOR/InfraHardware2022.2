@@ -83,6 +83,43 @@ module cpu(
     wire [31:0] SL16_Out;
     wire [31:0] ExceptAddr_Out;
 
+    // Control Unit
+
+    control_Unit control_Unit(
+        clock,
+        reset,
+        overflow,
+        neg,
+        zero,
+        eq,
+        gt,
+        lt,
+        INSTR_31_26,
+        PC_Write,
+        PC_Write_Cond,
+        MEM_ReadWrite,
+        IR_Write,
+        Xchg_Write,
+        Xchg_Src,
+        Reg_Write,
+        AB_Write,
+        ALUOut_Write,
+        Use_Overflow,
+        Opcode_Error,
+        EPC_Read,
+        Shift_Control,
+        Word_Length,
+        ALUOp,
+        ALUSrc_A,
+        Use_Shamt,
+        IorD,
+        Reg_Dst,
+        ALUSrc_B,
+        Mem_To_Reg,
+        PC_Src,
+        reset
+    );
+
     //    PC_Write: Sinal da Unidade de Controle
     //    PC_in: Entrada do PC; Saída do mux controlado por PCSource
     //    PC_out: Saída do PC
@@ -275,43 +312,6 @@ module cpu(
         EPC_Out,
         PCExcept_Address,
         PC_In
-    );
-
-    // Control Unit
-
-    control_Unit control_Unit(
-        clock,
-        reset,
-        overflow,
-        neg,
-        zero,
-        eq,
-        gt,
-        lt,
-        INSTR_31_26,
-        PC_Write,
-        PC_Write_Cond,
-        MEM_ReadWrite,
-        IR_Write,
-        Xchg_Write,
-        Xchg_Src,
-        Reg_Write,
-        AB_Write,
-        ALUOut_Write,
-        Use_Overflow,
-        Opcode_Error,
-        EPC_Read,
-        Shift_Control,
-        Word_Length,
-        ALUOp,
-        ALUSrc_A,
-        Use_Shamt,
-        IorD,
-        Reg_Dst,
-        ALUSrc_B,
-        Mem_To_Reg,
-        PC_Src,
-        reset
     );
 
 endmodule

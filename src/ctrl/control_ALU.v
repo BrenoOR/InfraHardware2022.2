@@ -56,41 +56,53 @@ always @(posedge clock) begin
         Use_Funct: begin
             case(Funct)
                 Add: begin
+                    // ALU return A + B
                     ALUControl_Out = 3'b001;
                 end
                 And: begin
+                    // ALU return A & B
                     ALUControl_Out = 3'b011;
                 end
                 Jr: begin
+                    // ALU return A
                     ALUControl_Out = 3'b000;
                 end
                 Slt: begin
+                    // ALU return A comp B
                     ALUControl_Out = 3'b111;
                 end
                 Sub: begin
+                    // ALU return A - B
                     ALUControl_Out = 3'b010;
                 end
                 default: begin
+                    // ALU return A
                     ALUControl_Out = 3'b000;
                 end
             endcase
         end
         Addi, Addiu: begin
+            // ALU return A + B
             ALUControl_Out = 3'b001;
         end
         Beq, Bne, Ble, Bgt: begin
+            // ALU return A comp B
             ALUControl_Out = 3'b111;
         end
         Sram, Lb, Lh, Lw, Sb, Sh, Sw : begin
+            // ALU return A + B
             ALUControl_Out = 3'b001;
         end
         Slti: begin
+            // ALU return A comp B
             ALUControl_Out = 3'b111;
         end
         Jal: begin
+            // ALU return A + B
             ALUControl_Out = 3'b001;
         end
         default: begin
+            // ALU return A
             ALUControl_Out = 3'b000;
         end
     endcase
