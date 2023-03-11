@@ -51,19 +51,83 @@ module control_Unit(
     output reg reset_Out
 );
 
-reg [1:0] state;
+reg [5:0] state;
 
-reg [2:0] counter;
+reg [2:0] counter; // TBC
 
 // Estados da Máquina de estados
-parameter State_Common  = 2'b00;
-parameter State_Add     = 2'b01;
-parameter State_Addi    = 2'b10;
-parameter State_Reset   = 2'b11;
+
+// Common e Reset
+parameter State_Common  = 6'b000000;
+parameter State_Reset   = 6'b111111;
+
+// Tipo R
+parameter State_Add     = 6'b000001;
+parameter State_And     = 6'b000010;
+parameter State_Div     = 6'b000011;
+parameter State_Mult    = 6'b000100;
+parameter State_Jr      = 6'b000101;
+parameter State_Mfhi    = 6'b000110;
+parameter State_Mflo    = 6'b000111;
+parameter State_Sll     = 6'b001000;
+parameter State_Sllv    = 6'b001001;
+parameter State_Slt     = 6'b001010;
+parameter State_Sra     = 6'b001011;
+parameter State_Srav    = 6'b001100;
+parameter State_Srl     = 6'b001101;
+parameter State_Sub     = 6'b001110;
+parameter State_Break   = 6'b001111;
+parameter State_Rte     = 6'b010000;
+parameter State_Xchg    = 6'b010001;
+
+// Tipo I
+parameter State_Addi    = 6'b010010;
+parameter State_Addiu   = 6'b010011;
+parameter State_Beq     = 6'b010100;
+parameter State_Bne     = 6'b010101;
+parameter State_Ble     = 6'b010110;
+parameter State_Bgt     = 6'b010111;
+parameter State_Sram    = 6'b011000;
+parameter State_Lb      = 6'b011001;
+parameter State_Lh      = 6'b011010;
+parameter State_Lui     = 6'b011011;
+parameter State_Lw      = 6'b011100;
+parameter State_Sb      = 6'b011101;
+parameter State_Sh      = 6'b011110;
+parameter State_Slti    = 6'b011111;
+parameter State_Sw      = 6'b100000;
+
+// Tipo J
+parameter State_J       = 6'b100001;
+parameter State_Jal     = 6'b100010;
+
 
 // Opcodes
-parameter Add   = 6'b000000;
+// Tipo R
+parameter R     = 6'b000000;
+
+// Tipo I
 parameter Addi  = 6'b001000;
+parameter Addiu = 6'b001001;
+parameter Beq   = 6'b000100;
+parameter Bne   = 6'b000101;
+parameter Ble   = 6'b000110;
+parameter Bgt   = 6'b000111;
+parameter Sram  = 6'b000001;
+parameter Lb    = 6'b100000;
+parameter Lh    = 6'b100001;
+parameter Lui   = 6'b001111;
+parameter Lw    = 6'b100011;
+parameter Sb    = 6'b101000;
+parameter Sh    = 6'b101001;
+parameter Slti  = 6'b001010;
+parameter Sw    = 6'b101011;
+
+// Tipo J
+parameter J     = 6'b000010;
+parameter Jal   = 6'b000011;
+
+// Reset
 parameter Reset = 6'b111111;
 
 initial begin
@@ -230,7 +294,7 @@ always @(posedge clock) begin
                 end
                 else if (counter == 3'b101) begin
                     case (opcode)
-                        Add: begin
+                        R: begin
                             state = State_Add;
                         end
                         Addi: begin
