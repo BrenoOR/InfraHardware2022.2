@@ -314,4 +314,14 @@ module cpu(
         PC_In
     );
 
+    comparer comparer_(
+
+        gt,
+        eq,
+        zero,
+        PC_Write,
+        PC_Out
+
+    )
+
 endmodule
