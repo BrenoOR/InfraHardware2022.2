@@ -333,13 +333,29 @@ module cpu(
 
     );
 
+    Registrador HI(
+        clock,
+        reset,
+        HI_Load,
+        RegHI_In,
+        RegHI_Out
+    );
+
+    Registrador LO(
+        clock,
+        reset,
+        LO_Load,
+        RegLO_In,
+        RegLO_Out
+    );
+
     booth_mult multiplicador(
         clock,
         reset,
         Use_Mult,
-        //valorA
-        //valorB
-        //HI
+        RegA_Out,
+        RegB_Out,
+        //HI_
         //LO
         //fimdamult
     );
