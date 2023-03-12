@@ -333,36 +333,36 @@ module cpu(
 
     );
 
-    Registrador HI(
-        clock,
-        reset,
-        HI_Load,
-        RegHI_In,
-        RegHI_Out
-    );
+    //Registrador HI(
+    //    clock,
+    //    reset,
+    //    HI_Load,
+    //    RegHI_In,
+    //    RegHI_Out
+    //);
 
-    Registrador LO(
-        clock,
-        reset,
-        LO_Load,
-        RegLO_In,
-        RegLO_Out
-    );
+    //Registrador LO(
+    //    clock,
+    //    reset,
+    //    LO_Load,
+    //    RegLO_In,
+    //    RegLO_Out
+    //);
 
-    booth_mult multiplicador(
-        clock,
-        reset,
-        Use_Mult,
-        RegA_Out,
-        RegB_Out,
+    //booth_mult multiplicador(
+    //    clock,
+    //    reset,
+    //    Use_Mult,
+    //    RegA_Out,
+    //    RegB_Out,
         //HI_
         //LO
         //fimdamult
-    );
+    //);
 
-    booth_div divisor(
-        clock,
-        reset,
+    //booth_div divisor(
+    //    clock,
+    //    reset,
         //Use_Div,
         //valorA,
         //valorB
@@ -370,6 +370,6 @@ module cpu(
         //LO
         //fimdadiv
         //divZero
-    );
+    //);
 
 endmodule
