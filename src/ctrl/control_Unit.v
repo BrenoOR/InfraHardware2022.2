@@ -25,6 +25,7 @@ module control_Unit(
     output reg IR_Write,
     output reg Xchg_Write,
     output reg Xchg_Src,
+    output reg Use_Mult,
     output reg Reg_Write,
     output reg AB_Write,
     output reg HILO_Write,
@@ -168,6 +169,7 @@ always @(posedge clock) begin
             IR_Write        = 1'b0;
             Xchg_Write      = 1'b0;
             Xchg_Src        = 1'b0;
+            Use_Mult        = 1'b0;
             Reg_Write       = 1'b0;
             AB_Write        = 1'b0;
             HILO_Write      = 1'b0;
@@ -203,6 +205,7 @@ always @(posedge clock) begin
             IR_Write        = 1'b0;
             Xchg_Write      = 1'b0;
             Xchg_Src        = 1'b0;
+            Use_Mult        = 1'b0;
             Reg_Write       = 1'b0;
             AB_Write        = 1'b0;
             HILO_Write      = 1'b0;
@@ -241,6 +244,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
                     HILO_Write      = 1'b0;
@@ -275,6 +279,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b1;         //<---------
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
                     HILO_Write      = 1'b0;
@@ -309,6 +314,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;         //<---------
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b1;         //<---------
                     HILO_Write      = 1'b0;
@@ -357,6 +363,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;         //<---------
                     HILO_Write      = 1'b0;
@@ -393,6 +400,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b1;         //<---------
                     AB_Write        = 1'b0;
                     HILO_Write      = 1'b0;
@@ -428,6 +436,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b1;         //
                     AB_Write        = 1'b0;
                     HILO_Write      = 1'b0;
@@ -463,6 +472,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b1;         //
                     AB_Write        = 1'b0;
                     HILO_Write      = 1'b0;
@@ -499,6 +509,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;         //<---------
                     AB_Write        = 1'b0;
                     HILO_Write      = 1'b0;
@@ -534,6 +545,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b1;         //
                     AB_Write        = 1'b0;
                     HILO_Write      = 1'b0;
@@ -569,6 +581,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b1;         //
                     AB_Write        = 1'b0;
                     HILO_Write      = 1'b0;
@@ -601,6 +614,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b1;         //
                     AB_Write        = 1'b0;
                     HILO_Write      = 1'b0;
@@ -640,6 +654,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
                     HILO_Write      = 1'b0;
@@ -675,6 +690,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
                     HILO_Write      = 1'b0;
@@ -711,6 +727,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
                     HILO_Write      = 1'b0;
@@ -747,6 +764,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
                     HILO_Write      = 1'b0;
@@ -783,6 +801,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
                     HILO_Write      = 1'b0;
