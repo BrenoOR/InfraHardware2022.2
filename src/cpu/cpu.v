@@ -20,8 +20,10 @@ module cpu(
     wire IR_Write;
     wire Xchg_Write;
     wire Xchg_Src;
+    wire Use_Mult;
     wire Reg_Write;
     wire AB_Write;
+    wire HILO_Write;
     wire ALUOut_Write;
     wire Use_Overflow;
     wire Opcode_Error;
@@ -29,6 +31,9 @@ module cpu(
     wire Shift_Control;
     wire ALUSrc_A;
     wire Use_Shamt;
+
+    // Controle de mult e div
+    wire fimMult;
 
     wire [1:0] Reg_Dst;
     wire [1:0] Word_Length;
@@ -77,7 +82,9 @@ module cpu(
     wire [31:0] ALU_Out;
     wire [31:0] LSC_Out;
     wire [31:0] LO_Out;
+    wire [31:0] LO_In;
     wire [31:0] HI_Out;
+    wire [31:0] HI_In;
     wire [31:0] RegShift_Out;
     wire [31:0] XchgAux_Out;
     wire [31:0] SL16_Out;
@@ -325,5 +332,44 @@ module cpu(
         Comparer_Out
 
     );
+
+    Registrador HI(
+        clock,
+        reset,
+        HILO_Write,
+        HI_In,
+        HI_Out
+    );
+
+    Registrador LO(
+        clock,
+        reset,
+        HILO_Write,
+        LO_In,
+        LO_Out
+    );
+
+    booth_mult multiplicador(
+        clock,
+        reset,
+        Use_Mult,
+        RegA_Out,
+        RegB_Out,
+        HI_In,
+        LO_In,
+        fimMult
+    );
+
+    //booth_div divisor(
+    //    clock,
+    //    reset,
+        //Use_Div,
+        //valorA,
+        //valorB
+        //HI
+        //LO
+        //fimdadiv
+        //divZero
+    //);
 
 endmodule

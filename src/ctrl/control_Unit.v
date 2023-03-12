@@ -6,13 +6,16 @@ module control_Unit(
     input wire overflow,
     input wire negative,
     input wire zero,
-    output reg Eq,
-    output reg Gt,
-    output reg Lt,
+    output reg Flag_Eq,
+    output reg Flag_Gt,
+    output reg Flag_Lt,
 
     // Opcode
     input wire [5:0] opcode,
     input wire [5:0] funct,
+
+    // Mult
+    input wire multStop,
 
     // Controles 1 bit
     
@@ -24,6 +27,7 @@ module control_Unit(
     output reg Xchg_Src,
     output reg Reg_Write,
     output reg AB_Write,
+    output reg HILO_Write,
     output reg ALUOut_Write,
     output reg Use_Overflow,
     output reg Opcode_Error,
@@ -166,6 +170,7 @@ always @(posedge clock) begin
             Xchg_Src        = 1'b0;
             Reg_Write       = 1'b0;
             AB_Write        = 1'b0;
+            HILO_Write      = 1'b0;
             ALUOut_Write    = 1'b0;
             Use_Overflow    = 1'b0;
             Opcode_Error    = 1'b0;
@@ -180,9 +185,9 @@ always @(posedge clock) begin
             ALUSrc_B        = 2'b00;
             Mem_To_Reg      = 3'b000;
             PC_Src          = 3'b000;
-            Eq              = 1'b0;
-            Gt              = 1'b0;
-            Lt              = 1'b0;
+            Flag_Eq         = 1'b0;
+            Flag_Gt         = 1'b0;
+            Flag_Lt         = 1'b0;
             reset_Out       = 1'b1;
 
             // Set counter
@@ -200,6 +205,7 @@ always @(posedge clock) begin
             Xchg_Src        = 1'b0;
             Reg_Write       = 1'b0;
             AB_Write        = 1'b0;
+            HILO_Write      = 1'b0;
             ALUOut_Write    = 1'b0;
             Use_Overflow    = 1'b0;
             Opcode_Error    = 1'b0;
@@ -214,9 +220,9 @@ always @(posedge clock) begin
             ALUSrc_B        = 2'b00;
             Mem_To_Reg      = 3'b000;
             PC_Src          = 3'b000;
-            Eq              = 1'b0;
-            Gt              = 1'b0;
-            Lt              = 1'b0;
+            Flag_Eq         = 1'b0;
+            Flag_Gt         = 1'b0;
+            Flag_Lt         = 1'b0;
             reset_Out       = 1'b0;         //<---------
 
             // Set counter
@@ -237,6 +243,7 @@ always @(posedge clock) begin
                     Xchg_Src        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
+                    HILO_Write      = 1'b0;
                     ALUOut_Write    = 1'b0;
                     Use_Overflow    = 1'b0;
                     Opcode_Error    = 1'b0;
@@ -251,9 +258,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b01;        //<---------
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -270,6 +277,7 @@ always @(posedge clock) begin
                     Xchg_Src        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
+                    HILO_Write      = 1'b0;
                     ALUOut_Write    = 1'b0;
                     Use_Overflow    = 1'b0;
                     Opcode_Error    = 1'b0;
@@ -284,9 +292,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b01;        //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -303,6 +311,7 @@ always @(posedge clock) begin
                     Xchg_Src        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b1;         //<---------
+                    HILO_Write      = 1'b0;
                     ALUOut_Write    = 1'b0;
                     Use_Overflow    = 1'b0;
                     Opcode_Error    = 1'b0;
@@ -317,9 +326,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;        //<---------
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -350,6 +359,7 @@ always @(posedge clock) begin
                     Xchg_Src        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;         //<---------
+                    HILO_Write      = 1'b0;
                     ALUOut_Write    = 1'b0;
                     Use_Overflow    = 1'b0;
                     Opcode_Error    = 1'b0;
@@ -364,9 +374,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;        //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -385,6 +395,7 @@ always @(posedge clock) begin
                     Xchg_Src        = 1'b0;
                     Reg_Write       = 1'b1;         //<---------
                     AB_Write        = 1'b0;
+                    HILO_Write      = 1'b0;
                     ALUOut_Write    = 1'b0;
                     Use_Overflow    = 1'b0;
                     Opcode_Error    = 1'b0;
@@ -399,9 +410,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;        //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -419,6 +430,7 @@ always @(posedge clock) begin
                     Xchg_Src        = 1'b0;
                     Reg_Write       = 1'b1;         //
                     AB_Write        = 1'b0;
+                    HILO_Write      = 1'b0;
                     ALUOut_Write    = 1'b1;
                     Use_Overflow    = 1'b0;
                     Opcode_Error    = 1'b0;
@@ -433,9 +445,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;        //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -453,6 +465,7 @@ always @(posedge clock) begin
                     Xchg_Src        = 1'b0;
                     Reg_Write       = 1'b1;         //
                     AB_Write        = 1'b0;
+                    HILO_Write      = 1'b0;
                     ALUOut_Write    = 1'b1;
                     Use_Overflow    = 1'b0;
                     Opcode_Error    = 1'b0;
@@ -467,9 +480,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;        //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -488,6 +501,7 @@ always @(posedge clock) begin
                     Xchg_Src        = 1'b0;
                     Reg_Write       = 1'b0;         //<---------
                     AB_Write        = 1'b0;
+                    HILO_Write      = 1'b0;
                     ALUOut_Write    = 1'b1;         //
                     Use_Overflow    = 1'b0;
                     Opcode_Error    = 1'b0;
@@ -502,9 +516,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b10;        //<---------
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -522,6 +536,7 @@ always @(posedge clock) begin
                     Xchg_Src        = 1'b0;
                     Reg_Write       = 1'b1;         //
                     AB_Write        = 1'b0;
+                    HILO_Write      = 1'b0;
                     ALUOut_Write    = 1'b1;         //<---------
                     Use_Overflow    = 1'b0;
                     Opcode_Error    = 1'b0;
@@ -536,9 +551,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b10;        //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -556,6 +571,7 @@ always @(posedge clock) begin
                     Xchg_Src        = 1'b0;
                     Reg_Write       = 1'b1;         //
                     AB_Write        = 1'b0;
+                    HILO_Write      = 1'b0;
                     ALUOut_Write    = 1'b1;         //
                     Use_Overflow    = 1'b0;
                     Opcode_Error    = 1'b0;
@@ -587,6 +603,7 @@ always @(posedge clock) begin
                     Xchg_Src        = 1'b0;
                     Reg_Write       = 1'b1;         //
                     AB_Write        = 1'b0;
+                    HILO_Write      = 1'b0;
                     ALUOut_Write    = 1'b1;         //
                     Use_Overflow    = 1'b0;
                     Opcode_Error    = 1'b0;
@@ -601,9 +618,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b10;        //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -625,6 +642,7 @@ always @(posedge clock) begin
                     Xchg_Src        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
+                    HILO_Write      = 1'b0;
                     ALUOut_Write    = 1'b0;
                     Use_Overflow    = 1'b0;
                     Opcode_Error    = 1'b0;
@@ -639,9 +657,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b1;
 
                     // Set counter
@@ -650,7 +668,6 @@ always @(posedge clock) begin
             end
             State_Beq: begin
                 if (counter == 3'b000) begin
-                    state = State_Beq;
                     // Set signals
                     PC_Write        = 1'b0;
                     PC_Write_Cond   = 1'b0;
@@ -660,6 +677,7 @@ always @(posedge clock) begin
                     Xchg_Src        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
+                    HILO_Write      = 1'b0;
                     ALUOut_Write    = 1'b0;
                     Use_Overflow    = 1'b0;
                     Opcode_Error    = 1'b0;
@@ -674,18 +692,18 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;    //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b1;     //
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b1;     //
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
+                    state = State_Common;
                     // Set counter
                     counter         = 3'b000;
                 end
             end
             State_Bne: begin
                 if (counter == 3'b000) begin
-                    state = State_Bne;
                     // Set signals
                     PC_Write        = 1'b0;
                     PC_Write_Cond   = 1'b0;
@@ -695,6 +713,7 @@ always @(posedge clock) begin
                     Xchg_Src        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
+                    HILO_Write      = 1'b0;
                     ALUOut_Write    = 1'b0;
                     Use_Overflow    = 1'b0;
                     Opcode_Error    = 1'b0;
@@ -709,18 +728,18 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;    //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;     //
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;     //
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
+                    state = State_Common;
                     // Set counter
                     counter         = 3'b000;
                 end
             end
             State_Ble: begin
                 if (counter == 3'b000) begin
-                    state = State_Ble;
                     // Set signals
                     PC_Write        = 1'b0;
                     PC_Write_Cond   = 1'b0;
@@ -730,6 +749,7 @@ always @(posedge clock) begin
                     Xchg_Src        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
+                    HILO_Write      = 1'b0;
                     ALUOut_Write    = 1'b0;
                     Use_Overflow    = 1'b0;
                     Opcode_Error    = 1'b0;
@@ -744,18 +764,18 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;    //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;     
-                    Gt              = 1'b1;     //
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;     
+                    Flag_Gt         = 1'b1;     //
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
+                    state = State_Common;
                     // Set counter
                     counter         = 3'b000;
                 end
             end
             State_Bgt: begin
                 if (counter == 3'b000) begin
-                    state = State_Bgt;
                     // Set signals
                     PC_Write        = 1'b0;
                     PC_Write_Cond   = 1'b0;
@@ -765,6 +785,7 @@ always @(posedge clock) begin
                     Xchg_Src        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
+                    HILO_Write      = 1'b0;
                     ALUOut_Write    = 1'b0;
                     Use_Overflow    = 1'b0;
                     Opcode_Error    = 1'b0;
@@ -779,11 +800,135 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;    //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;     
-                    Gt              = 1'b0;     //
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;     //
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
+                    state = State_Common;
+                    // Set counter
+                    counter         = 3'b000;
+                end
+            end
+            
+            State_Mult: begin
+                if(counter == 3'b000) begin
+                    // Set signals
+                    PC_Write        = 1'b0;
+                    PC_Write_Cond   = 1'b0;
+                    MEM_ReadWrite   = 1'b0;
+                    IR_Write        = 1'b0;
+                    Xchg_Write      = 1'b0;
+                    Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b1;  //
+                    Reg_Write       = 1'b0;
+                    AB_Write        = 1'b0;
+                    HILO_Write      = 1'b0;
+                    ALUOut_Write    = 1'b0;
+                    Use_Overflow    = 1'b0;
+                    Opcode_Error    = 1'b0;
+                    EPC_Read        = 1'b0;
+                    Shift_Control   = 1'b0;
+                    Word_Length     = 2'b00;
+                    ALU_Op          = 6'b000000;
+                    ALUSrc_A        = 1'b0;
+                    Use_Shamt       = 1'b0;
+                    IorD            = 2'b00;
+                    Reg_Dst         = 2'b00;
+                    ALUSrc_B        = 2'b00;
+                    Mem_To_Reg      = 3'b000;
+                    PC_Src          = 3'b000;
+                    Flag_Eq         = 1'b0;     
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
+                    reset_Out       = 1'b0;
+
+                    if(multStop)begin
+                        Use_Mult        = 1'b0;
+                        HILO_Write      = 1'b1;
+                        state           = State_Common;
+                    end
+                    else begin
+                        state           = State_Mult;
+                    end
+
+                    // Set counter
+                    counter         = 3'b000;
+                end
+            end
+
+            State_Mfhi: begin
+                if(counter == 3'b000) begin
+                    // Set signals
+                    PC_Write        = 1'b0;
+                    PC_Write_Cond   = 1'b0;
+                    MEM_ReadWrite   = 1'b0;
+                    IR_Write        = 1'b0;
+                    Xchg_Write      = 1'b0;
+                    Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
+                    Reg_Write       = 1'b1;   //
+                    AB_Write        = 1'b0;
+                    HILO_Write      = 1'b0;
+                    ALUOut_Write    = 1'b0;
+                    Use_Overflow    = 1'b0;
+                    Opcode_Error    = 1'b0;
+                    EPC_Read        = 1'b0;
+                    Shift_Control   = 1'b0;
+                    Word_Length     = 2'b00;
+                    ALU_Op          = 6'b000000;
+                    ALUSrc_A        = 1'b0;
+                    Use_Shamt       = 1'b0;
+                    IorD            = 2'b00;
+                    Reg_Dst         = 2'b01;  //
+                    ALUSrc_B        = 2'b00;
+                    Mem_To_Reg      = 3'b011; //
+                    PC_Src          = 3'b000;
+                    Flag_Eq         = 1'b0;     
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
+                    reset_Out       = 1'b0;
+
+                    state = State_Common;
+
+                    // Set counter
+                    counter         = 3'b000;
+                end
+            end
+
+            State_Mflo: begin
+                if(counter == 3'b000) begin
+                    // Set signals
+                    PC_Write        = 1'b0;
+                    PC_Write_Cond   = 1'b0;
+                    MEM_ReadWrite   = 1'b0;
+                    IR_Write        = 1'b0;
+                    Xchg_Write      = 1'b0;
+                    Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
+                    Reg_Write       = 1'b1;   //
+                    AB_Write        = 1'b0;
+                    HILO_Write      = 1'b0;
+                    ALUOut_Write    = 1'b0;
+                    Use_Overflow    = 1'b0;
+                    Opcode_Error    = 1'b0;
+                    EPC_Read        = 1'b0;
+                    Shift_Control   = 1'b0;
+                    Word_Length     = 2'b00;
+                    ALU_Op          = 6'b000000;
+                    ALUSrc_A        = 1'b0;
+                    Use_Shamt       = 1'b0;
+                    IorD            = 2'b00;
+                    Reg_Dst         = 2'b01;  //
+                    ALUSrc_B        = 2'b00;
+                    Mem_To_Reg      = 3'b010; //
+                    PC_Src          = 3'b000;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
+                    reset_Out       = 1'b0;
+
+                    state = State_Common;
                     // Set counter
                     counter         = 3'b000;
                 end
