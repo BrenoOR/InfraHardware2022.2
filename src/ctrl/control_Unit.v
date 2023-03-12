@@ -19,6 +19,7 @@ module control_Unit(
     output reg IR_Write,
     output reg Xchg_Write,
     output reg Xchg_Src,
+    output reg Use_Mult,
     output reg Reg_Write,
     output reg AB_Write,
     output reg ALUOut_Write,
@@ -788,7 +789,46 @@ always @(posedge clock) begin
                     counter         = 3'b000;
                 end
             end
+<<<<<<< Updated upstream
             
+=======
+            State_Mult: begin
+                if(counter == 3'b000) begin
+                    state = State_Mult;
+                    // Set signals
+                    PC_Write        = 1'b0;
+                    PC_Write_Cond   = 1'b0;
+                    MEM_ReadWrite   = 1'b0;
+                    IR_Write        = 1'b0;
+                    Xchg_Write      = 1'b0;
+                    Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b1;
+                    Reg_Write       = 1'b0;
+                    AB_Write        = 1'b0;
+                    ALUOut_Write    = 1'b0;
+                    Use_Overflow    = 1'b0;
+                    Opcode_Error    = 1'b0;
+                    EPC_Read        = 1'b0;
+                    Shift_Control   = 1'b0;
+                    Word_Length     = 2'b00;
+                    ALU_Op          = 6'b000111;//
+                    ALUSrc_A        = 1'b1;     //
+                    Use_Shamt       = 1'b0;
+                    IorD            = 2'b00;
+                    Reg_Dst         = 2'b00;
+                    ALUSrc_B        = 2'b00;    //
+                    Mem_To_Reg      = 3'b000;
+                    PC_Src          = 3'b000;
+                    Eq              = 1'b0;     
+                    Gt              = 1'b0;     //
+                    Lt              = 1'b0;
+                    reset_Out       = 1'b0;
+
+                    // Set counter
+                    counter         = 3'b000;
+                end
+            end
+>>>>>>> Stashed changes
         endcase
     end
 end

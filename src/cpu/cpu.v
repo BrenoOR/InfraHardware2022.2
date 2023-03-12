@@ -20,6 +20,7 @@ module cpu(
     wire IR_Write;
     wire Xchg_Write;
     wire Xchg_Src;
+    wire Use_Mult;
     wire Reg_Write;
     wire AB_Write;
     wire ALUOut_Write;
@@ -330,6 +331,29 @@ module cpu(
         Flag_Lt,
         PC_Out
 
-    )
+    );
+
+    booth_mult multiplicador(
+        clock,
+        reset,
+        Use_Mult,
+        //valorA
+        //valorB
+        //HI
+        //LO
+        //fimdamult
+    );
+
+    booth_div divisor(
+        clock,
+        reset,
+        //Use_Div,
+        //valorA,
+        //valorB
+        //HI
+        //LO
+        //fimdadiv
+        //divZero
+    );
 
 endmodule
