@@ -819,9 +819,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;    //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;     
-                    Gt              = 1'b0;     //
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;     
+                    Flag_Gt         = 1'b0;     //
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
