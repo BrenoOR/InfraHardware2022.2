@@ -165,6 +165,7 @@ always @(posedge clock) begin
             IR_Write        = 1'b0;
             Xchg_Write      = 1'b0;
             Xchg_Src        = 1'b0;
+            Use_Mult        = 1'b0;
             Reg_Write       = 1'b0;
             AB_Write        = 1'b0;
             ALUOut_Write    = 1'b0;
@@ -199,6 +200,7 @@ always @(posedge clock) begin
             IR_Write        = 1'b0;
             Xchg_Write      = 1'b0;
             Xchg_Src        = 1'b0;
+            Use_Mult        = 1'b0;
             Reg_Write       = 1'b0;
             AB_Write        = 1'b0;
             ALUOut_Write    = 1'b0;
@@ -236,6 +238,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
                     ALUOut_Write    = 1'b0;
@@ -269,6 +272,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b1;         //<---------
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
                     ALUOut_Write    = 1'b0;
@@ -302,6 +306,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;         //<---------
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b1;         //<---------
                     ALUOut_Write    = 1'b0;
@@ -349,6 +354,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;         //<---------
                     ALUOut_Write    = 1'b0;
@@ -384,6 +390,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b1;         //<---------
                     AB_Write        = 1'b0;
                     ALUOut_Write    = 1'b0;
@@ -418,6 +425,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b1;         //
                     AB_Write        = 1'b0;
                     ALUOut_Write    = 1'b1;
@@ -452,6 +460,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b1;         //
                     AB_Write        = 1'b0;
                     ALUOut_Write    = 1'b1;
@@ -487,6 +496,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;         //<---------
                     AB_Write        = 1'b0;
                     ALUOut_Write    = 1'b1;         //
@@ -521,6 +531,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b1;         //
                     AB_Write        = 1'b0;
                     ALUOut_Write    = 1'b1;         //<---------
@@ -555,6 +566,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b1;         //
                     AB_Write        = 1'b0;
                     ALUOut_Write    = 1'b1;         //
@@ -586,6 +598,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b1;         //
                     AB_Write        = 1'b0;
                     ALUOut_Write    = 1'b1;         //
@@ -624,6 +637,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
                     ALUOut_Write    = 1'b0;
@@ -659,6 +673,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
                     ALUOut_Write    = 1'b0;
@@ -694,6 +709,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
                     ALUOut_Write    = 1'b0;
@@ -729,6 +745,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
                     ALUOut_Write    = 1'b0;
@@ -764,6 +781,7 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
+                    Use_Mult        = 1'b0;
                     Reg_Write       = 1'b0;
                     AB_Write        = 1'b0;
                     ALUOut_Write    = 1'b0;
