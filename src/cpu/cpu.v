@@ -94,6 +94,9 @@ module cpu(
         eq,
         gt,
         lt,
+        Flag_Eq,
+        Flag_Gt,
+        Flag_Lt,
         INSTR_31_26,
         INSTR_15_0[5:0],
         PC_Write,
@@ -319,8 +322,12 @@ module cpu(
 
         gt,
         eq,
+        lt,
         zero,
         PC_Write,
+        Flag_Eq,
+        Flag_Gt,
+        Flag_Lt,
         PC_Out
 
     )

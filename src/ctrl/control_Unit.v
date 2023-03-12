@@ -26,9 +26,9 @@ module control_Unit(
     output reg Opcode_Error,
     output reg EPC_Read,
     output reg Shift_Control,
-    output reg Eq,
-    output reg Gt,
-    output reg Lt
+    output reg Flag_Eq,
+    output reg Flag_Gt,
+    output reg Flag_Lt
 
     // Controles de mais de 1 bit
 
@@ -180,9 +180,9 @@ always @(posedge clock) begin
             ALUSrc_B        = 2'b00;
             Mem_To_Reg      = 3'b000;
             PC_Src          = 3'b000;
-            Eq              = 1'b0;
-            Gt              = 1'b0;
-            Lt              = 1'b0;
+            Flag_Eq         = 1'b0;
+            Flag_Gt         = 1'b0;
+            Flag_Lt         = 1'b0;
             reset_Out       = 1'b1;
 
             // Set counter
@@ -214,9 +214,9 @@ always @(posedge clock) begin
             ALUSrc_B        = 2'b00;
             Mem_To_Reg      = 3'b000;
             PC_Src          = 3'b000;
-            Eq              = 1'b0;
-            Gt              = 1'b0;
-            Lt              = 1'b0;
+            Flag_Eq         = 1'b0;
+            Flag_Gt         = 1'b0;
+            Flag_Lt         = 1'b0;
             reset_Out       = 1'b0;         //<---------
 
             // Set counter
@@ -251,9 +251,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b01;        //<---------
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -284,9 +284,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b01;        //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -317,9 +317,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;        //<---------
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -364,9 +364,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;        //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -399,9 +399,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;        //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -433,9 +433,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;        //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -467,9 +467,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;        //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -502,9 +502,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b10;        //<---------
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -536,9 +536,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b10;        //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -601,9 +601,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b10;        //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -639,9 +639,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b1;
 
                     // Set counter
@@ -674,9 +674,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;    //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b1;     //
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b1;     //
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -709,9 +709,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;    //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;     //
-                    Gt              = 1'b0;
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;     //
+                    Flag_Gt         = 1'b0;
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -744,9 +744,9 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;    //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;     
-                    Gt              = 1'b1;     //
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;     //
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
@@ -779,15 +779,16 @@ always @(posedge clock) begin
                     ALUSrc_B        = 2'b00;    //
                     Mem_To_Reg      = 3'b000;
                     PC_Src          = 3'b000;
-                    Eq              = 1'b0;     
-                    Gt              = 1'b0;     //
-                    Lt              = 1'b0;
+                    Flag_Eq         = 1'b0;
+                    Flag_Gt         = 1'b0;     //
+                    Flag_Lt         = 1'b0;
                     reset_Out       = 1'b0;
 
                     // Set counter
                     counter         = 3'b000;
                 end
             end
+            
         endcase
     end
 end
