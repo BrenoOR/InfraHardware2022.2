@@ -95,6 +95,7 @@ module cpu(
         gt,
         lt,
         INSTR_31_26,
+        INSTR_15_0[5:0],
         PC_Write,
         PC_Write_Cond,
         MEM_ReadWrite,

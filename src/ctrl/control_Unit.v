@@ -9,6 +9,7 @@ module control_Unit(
 
     // Opcode
     input wire [5:0] opcode,
+    input wire [5:0] funct,
 
     // Controles 1 bit
     
@@ -105,6 +106,23 @@ parameter State_Jal     = 6'b100010;
 // Opcodes
 // Tipo R
 parameter R     = 6'b000000;
+parameter Add   = 6'b100000;
+parameter And   = 6'b100100;
+parameter Div   = 6'b100000;
+parameter Mult  = 6'b100000;
+parameter Jr    = 6'b100000;
+parameter Mfhi  = 6'b100000;
+parameter Mflo  = 6'b100000;
+parameter Sll   = 6'b100000;
+parameter Sllv  = 6'b100000;
+parameter Slt   = 6'b100000;
+parameter Sra   = 6'b100000;
+parameter Srav  = 6'b100000;
+parameter Srl   = 6'b100000;
+parameter Sub   = 6'b100000;
+parameter Break = 6'b100000;
+parameter Rte   = 6'b100000;
+parameter Xchg  = 6'b100000;
 
 // Tipo I
 parameter Addi  = 6'b001000;
@@ -310,7 +328,11 @@ always @(posedge clock) begin
                 else if (counter == 3'b101) begin
                     case (opcode)
                         R: begin
-                            state = State_Add;
+                            case (funct)
+                                Add: begin
+                                    state = State_Add;
+                                end
+                            endcase
                         end
                         Addi: begin
                             state = State_Addi;
@@ -464,9 +486,9 @@ always @(posedge clock) begin
                     IR_Write        = 1'b0;
                     Xchg_Write      = 1'b0;
                     Xchg_Src        = 1'b0;
-                    Reg_Write       = 1'b1;         //<---------
+                    Reg_Write       = 1'b0;         //<---------
                     AB_Write        = 1'b0;
-                    ALUOut_Write    = 1'b0;         //
+                    ALUOut_Write    = 1'b1;         //
                     Use_Overflow    = 1'b0;
                     Opcode_Error    = 1'b0;
                     EPC_Read        = 1'b0;
@@ -488,7 +510,7 @@ always @(posedge clock) begin
                     // Set counter
                     counter         = counter + 1;
                 end
-                else if (counter == 3'b001) begin
+                else if (counter == 3'b001 || counter == 3'b010) begin
                     state = State_Addi;
                     
                     // Set signals
@@ -520,9 +542,40 @@ always @(posedge clock) begin
                     reset_Out       = 1'b0;
 
                     // Set counter
-                    counter         = 3'b010;
+                    counter         = counter + 1;
                 end
-                else if (counter == 3'b010) begin
+                else if (counter == 3'b011) begin
+                    state = State_Addi;
+                    
+                    // Set signals
+                    PC_Write        = 1'b0;
+                    PC_Write_Cond   = 1'b0;
+                    MEM_ReadWrite   = 1'b0;
+                    IR_Write        = 1'b0;
+                    Xchg_Write      = 1'b0;
+                    Xchg_Src        = 1'b0;
+                    Reg_Write       = 1'b1;         //
+                    AB_Write        = 1'b0;
+                    ALUOut_Write    = 1'b1;         //
+                    Use_Overflow    = 1'b0;
+                    Opcode_Error    = 1'b0;
+                    EPC_Read        = 1'b0;
+                    Shift_Control   = 1'b0;
+                    Word_Length     = 2'b00;
+                    ALU_Op          = opcode;       //
+                    ALUSrc_A        = 1'b1;         //
+                    Use_Shamt       = 1'b0;
+                    IorD            = 2'b00;
+                    Reg_Dst         = 2'b00;
+                    ALUSrc_B        = 2'b10;        //
+                    Mem_To_Reg      = 3'b000;
+                    PC_Src          = 3'b000;
+                    reset_Out       = 1'b0;
+
+                    // Set counter
+                    counter         = counter + 1;
+                end
+                else if (counter == 3'b100) begin
                     state = State_Common;
                     
                     // Set signals
@@ -556,6 +609,9 @@ always @(posedge clock) begin
                     // Set counter
                     counter         = 3'b000;
                 end
+            end
+            State_Break: begin
+
             end
             State_Reset: begin
                 if (counter == 3'b000) begin
