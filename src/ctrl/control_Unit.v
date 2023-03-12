@@ -789,9 +789,7 @@ always @(posedge clock) begin
                     counter         = 3'b000;
                 end
             end
-<<<<<<< Updated upstream
             
-=======
             State_Mult: begin
                 if(counter == 3'b000) begin
                     state = State_Mult;
@@ -828,7 +826,6 @@ always @(posedge clock) begin
                     counter         = 3'b000;
                 end
             end
->>>>>>> Stashed changes
         endcase
     end
 end
