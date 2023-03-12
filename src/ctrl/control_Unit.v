@@ -6,6 +6,9 @@ module control_Unit(
     input wire overflow,
     input wire negative,
     input wire zero,
+    output reg Eq,
+    output reg Gt,
+    output reg Lt,
 
     // Opcode
     input wire [5:0] opcode,
@@ -26,9 +29,6 @@ module control_Unit(
     output reg Opcode_Error,
     output reg EPC_Read,
     output reg Shift_Control,
-    output reg Eq,
-    output reg Gt,
-    output reg Lt
 
     // Controles de mais de 1 bit
 

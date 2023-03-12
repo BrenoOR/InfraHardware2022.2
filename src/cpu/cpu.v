@@ -82,6 +82,7 @@ module cpu(
     wire [31:0] XchgAux_Out;
     wire [31:0] SL16_Out;
     wire [31:0] ExceptAddr_Out;
+    wire [31:0] Comparer_Out;
 
     // Control Unit
 
@@ -321,8 +322,8 @@ module cpu(
         eq,
         zero,
         PC_Write,
-        PC_Out
+        Comparer_Out
 
-    )
+    );
 
 endmodule
